@@ -1,8 +1,11 @@
 package com.teles.basicProject.entities;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -18,8 +21,15 @@ public class User implements Serializable {
     private String email;
     private String phone;
     private String password;
+
+    //Client for various orders
+    @OneToMany(mappedBy = "clients")
+    @JsonIgnore
+    private List<Order> orders = new ArrayList<>();
+
     public User(){
     }
+
     public User(Long ID, String name, String email, String phone, String password) {
         this.ID = ID;
         this.name = name;
@@ -27,6 +37,11 @@ public class User implements Serializable {
         this.phone = phone;
         this.password = password;
     }
+
+    public List<Order> getOrders() {
+        return orders;
+    }
+
     public Long getID() {
         return ID;
     }
