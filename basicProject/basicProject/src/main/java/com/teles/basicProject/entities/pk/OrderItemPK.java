@@ -1,5 +1,6 @@
 package com.teles.basicProject.entities.pk;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.teles.basicProject.entities.Order;
 import com.teles.basicProject.entities.Product;
 import jakarta.persistence.Embeddable;
