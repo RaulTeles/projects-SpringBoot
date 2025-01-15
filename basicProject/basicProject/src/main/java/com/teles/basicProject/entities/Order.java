@@ -29,10 +29,13 @@ public class Order implements Serializable {
     @JoinColumn(name = "client_id")
     private User clients;
 
+    /*
     //Falta o construtor?
     @ManyToOne
     @JoinColumn(name = "items_id")
+    @Transient
     private Product items;
+    */
 
     private Integer orderStatus;
 

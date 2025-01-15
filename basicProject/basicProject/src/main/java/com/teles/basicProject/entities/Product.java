@@ -21,16 +21,18 @@ public class Product implements Serializable {
     private Double price;
     private String imgUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "product_id")
+
     //Colocando o set para indicar que o mesmo produto não pode ter mais de uma categoria
-    @Transient
+    @ManyToMany
+    @JoinTable(name = "tb_product_category", joinColumns = @JoinColumn(name = "product_id"), inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
+    /*
     @OneToMany(mappedBy = "items")
     @JsonIgnore
+    @Transient
     private List<Order> orders = new ArrayList<>();
-
+    */
     public Product(){}
 
     public Product(Long id,String name, String description, Double price, String imgUrl) {
@@ -41,9 +43,11 @@ public class Product implements Serializable {
         this.imgUrl = imgUrl;
     }
 
+    /*
     public List<Order> getOrders() {
         return orders;
     }
+    */
 
     public Long getId() {
         return id;
