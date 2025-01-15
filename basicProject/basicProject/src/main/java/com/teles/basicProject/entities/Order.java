@@ -1,6 +1,7 @@
 package com.teles.basicProject.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.teles.basicProject.entities.enums.OrderStatus;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -28,11 +29,14 @@ public class Order implements Serializable {
     @JoinColumn(name = "client_id")
     private User clients;
 
+    private Integer orderStatus;
+
     public Order(){}
 
-    public Order(Long id, Instant moment, User clients) {
+    public Order(Long id, Instant moment, OrderStatus orderStatus,User clients) {
         this.id = id;
         this.moment = moment;
+        setOrderStatus(orderStatus);
         this.clients = clients;
     }
 
@@ -50,6 +54,16 @@ public class Order implements Serializable {
 
     public void setMoment(Instant moment) {
         this.moment = moment;
+    }
+
+    public OrderStatus getOrderStatus() {
+        return OrderStatus.valueOf(orderStatus);
+    }
+
+    public void setOrderStatus(OrderStatus orderStatus) {
+        if (orderStatus != null) {
+            this.orderStatus = orderStatus.getCode();
+        }
     }
 
     public User getClients() {
