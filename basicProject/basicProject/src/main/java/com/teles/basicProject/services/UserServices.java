@@ -4,6 +4,7 @@ import com.teles.basicProject.entities.User;
 import com.teles.basicProject.repositories.UserRepository;
 import com.teles.basicProject.services.exceptions.DataBaseException;
 import com.teles.basicProject.services.exceptions.ResourceNotFoundException;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -42,15 +43,20 @@ public class UserServices {
     }
 
     public User updateUser(long id, User obj){
-        User entity = userRepository.getReferenceById(id);
-        updateData (entity, obj);
-        return userRepository.save(entity);
+        try {
+            User entity = userRepository.getReferenceById(id);
+            updateData (entity, obj);
+            return userRepository.save(entity);
+        }catch (EntityNotFoundException e){
+            throw new ResourceNotFoundException(id);
+        }
     }
 
     private void updateData(User entity, User obj) {
         entity.setName(obj.getName());
         entity.setEmail(obj.getEmail());
         entity.setPhone(obj.getPhone());
+
     }
 
 }
