@@ -42,6 +42,7 @@ public class UserServices {
         }
     }
 
+    //Tratando exceção para update
     public User updateUser(long id, User obj){
         try {
             User entity = userRepository.getReferenceById(id);
