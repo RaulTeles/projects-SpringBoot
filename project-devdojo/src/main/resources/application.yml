@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: project-devdojo
+  threads:
+    virtual:
+      enabled: true
+server:
+    servlet:
+      contextPath: /
+    error:
+      include-stacktrace: on_param
