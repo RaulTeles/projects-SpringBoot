@@ -9,3 +9,6 @@ server:
       contextPath: /
     error:
       include-stacktrace: on_param
+    tomcat:
+      threads:
+        max: 20
