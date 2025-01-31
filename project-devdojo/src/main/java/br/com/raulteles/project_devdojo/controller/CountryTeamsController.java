@@ -1,10 +1,13 @@
 package br.com.raulteles.project_devdojo.controller;
 
 import br.com.raulteles.project_devdojo.controller.domain.CountryTeams;
+import br.com.raulteles.project_devdojo.controller.request.CountryTeamsPostRequest;
+import br.com.raulteles.project_devdojo.controller.response.CountryTeamsGetResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -28,10 +31,15 @@ public class CountryTeamsController {
     }
 
     @PostMapping
-    public ResponseEntity<CountryTeams> save(@RequestBody CountryTeams countryTeams){
-        countryTeams.setId(ThreadLocalRandom.current().nextLong(1,1000));
+    public ResponseEntity<CountryTeamsGetResponse> save(@RequestBody CountryTeamsPostRequest countryTeamsPostRequest){
+//        Enviando as informações da criação de um novo objeto
+        var countryTeams = CountryTeams.builder().id(ThreadLocalRandom.current().nextLong(1,1000)).name(countryTeamsPostRequest.getName()).dateTime(LocalDateTime.now()).build();
         CountryTeams.getListCountryTeams().add(countryTeams);
-        return ResponseEntity.status(HttpStatus.CREATED).body(countryTeams);
+
+//        Coletando o campos necessários dos objetos criados
+        var countryTeamsResponse = CountryTeamsGetResponse.builder().id(countryTeams.getId()).name(countryTeams.getName()).dateTime(LocalDateTime.now()).build();
+
+        return ResponseEntity.status(HttpStatus.CREATED).body(countryTeamsResponse);
     }
 
 }
