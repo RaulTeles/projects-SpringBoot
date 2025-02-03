@@ -7,15 +7,14 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-//Utilizando uma função do lombook, passando duas annotation para evitar o uso explicito de construtores e Getters
+//Utilizando uma função da lib do lombook, passando duas annotation para evitar o uso explicito de Getters, Setter e Build
 @Getter
 @Setter
 @Builder
 public class Teams {
     private Long id;
-
     //desserializando uma APi que possui um campo full_name para name
-//    @JsonProperty("full_name")
+    //@JsonProperty("full_name")
     private String name;
     private LocalDateTime dateTime;
 
