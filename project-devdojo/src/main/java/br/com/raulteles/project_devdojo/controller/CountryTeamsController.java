@@ -42,12 +42,11 @@ public class CountryTeamsController {
 
 //        Enviando as informações da criação de um novo objeto
 //        var countryTeams = CountryTeams.builder().id(ThreadLocalRandom.current().nextLong(1,1000)).name(countryTeamsPostRequest.getName()).dateTime(LocalDateTime.now()).build();
-//        CountryTeams.getListCountryTeams().add(countryTeams);
 
 
 //        Coletando o campos necessários dos objetos criados
 //        var countryTeamsResponse = CountryTeamsGetResponse.builder().id(countryTeams.getId()).name(countryTeams.getName()).dateTime(LocalDateTime.now()).build();
-
+        CountryTeams.getListCountryTeams().add(countryTeams);
         return ResponseEntity.status(HttpStatus.CREATED).body(countryTeamsResponse);
     }
 
