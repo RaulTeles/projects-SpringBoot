@@ -7,7 +7,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class TeamsPostRequest {
+//Classe criada para expor o contrato apenas dos atributos especificos (desacoplando)
+public class CountryTeamsPutRequest {
     private Long id;
     private String name;
+
 }

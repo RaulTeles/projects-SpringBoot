@@ -3,6 +3,7 @@ package br.com.raulteles.project_devdojo.controller;
 import br.com.raulteles.project_devdojo.controller.domain.CountryTeams;
 import br.com.raulteles.project_devdojo.controller.mapper.CountryMapper;
 import br.com.raulteles.project_devdojo.controller.request.CountryTeamsPostRequest;
+import br.com.raulteles.project_devdojo.controller.request.CountryTeamsPutRequest;
 import br.com.raulteles.project_devdojo.controller.response.CountryTeamsGetResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -68,5 +69,16 @@ public class CountryTeamsController {
 
         CountryTeams.getListCountryTeams().remove(countryTeamsDelete);
         return ResponseEntity.noContent().build();
+    }
+
+    @PutMapping
+    public ResponseEntity<Void> update(@RequestBody CountryTeamsPutRequest putRequest){
+        var countryTeamsupdate = CountryTeams.getListCountryTeams().stream().filter(c -> c.getId().equals(putRequest.getId())).findFirst().orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Country Team not found"));
+        var upadteCountryTeams = MAPPER.toCountryTeams(putRequest, countryTeamsupdate.getDateTime());
+
+        CountryTeams.getListCountryTeams().remove(countryTeamsupdate);
+        CountryTeams.getListCountryTeams().add(upadteCountryTeams);
+
+        return ResponseEntity.ok().build();
     }
 }
