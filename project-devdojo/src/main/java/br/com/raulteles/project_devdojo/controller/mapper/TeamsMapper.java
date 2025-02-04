@@ -2,6 +2,7 @@ package br.com.raulteles.project_devdojo.controller.mapper;
 
 import br.com.raulteles.project_devdojo.controller.domain.Teams;
 import br.com.raulteles.project_devdojo.controller.request.TeamsPostRequest;
+import br.com.raulteles.project_devdojo.controller.request.TeamsPutRequest;
 import br.com.raulteles.project_devdojo.controller.response.TeamsGetResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -17,7 +18,10 @@ public interface TeamsMapper {
     @Mapping(target = "dateTime", expression = "java(java.time.LocalDateTime.now())")
     @Mapping(target = "id", expression = "java(java.util.concurrent.ThreadLocalRandom.current().nextLong(1,1000))")
     Teams toTeams(TeamsPostRequest postRequest);
+    Teams toTeams(TeamsPutRequest putRequest);
 
     TeamsGetResponse toResponse(Teams teamsGetReponse);
     List<TeamsGetResponse> toResponseList(List<Teams> teamsGetResponseList);
+
+
 }

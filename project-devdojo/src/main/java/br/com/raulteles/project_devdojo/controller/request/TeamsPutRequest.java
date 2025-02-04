@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class TeamsPostRequest {
+public class TeamsPutRequest {
     private Long id;
     private String name;
 }

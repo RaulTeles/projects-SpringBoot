@@ -11,7 +11,9 @@ import java.util.List;
 @Getter
 @Setter
 @Builder
+@EqualsAndHashCode(onlyExplicitlyIncluded = true)
 public class Teams {
+    @EqualsAndHashCode.Include
     private Long id;
     //desserializando uma APi que possui um campo full_name para name
     //@JsonProperty("full_name")
