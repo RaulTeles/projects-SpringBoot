@@ -7,10 +7,9 @@ import br.com.raulteles.project_devdojo.controller.response.CountryTeamsGetRespo
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
 @RequestMapping(value = "country")
@@ -20,18 +19,31 @@ public class CountryTeamsController {
     private static final CountryMapper MAPPER = CountryMapper.INSTANCE;
 
     @GetMapping("american")
-    public List<CountryTeams> listAllCountryTeams(@RequestParam(required = false) String name){
-        if(name == null){return CountryTeams.getListCountryTeams();}
-        return CountryTeams.getListCountryTeams().stream().filter(c -> c.getName().equalsIgnoreCase(name)).toList();
+    public ResponseEntity<List<CountryTeamsGetResponse>> listAllCountryTeams(@RequestParam(required = false) String name){
+
+        var countryTeamsResponseList = MAPPER.toResonseList(CountryTeams.getListCountryTeams());
+
+        if(name == null){return ResponseEntity.ok(countryTeamsResponseList);}
+        var response = countryTeamsResponseList.stream().filter(c -> c.getName().equalsIgnoreCase(name)).toList();
+        return ResponseEntity.ok(response);
     }
+
     @GetMapping("american/filters")
-    public List<CountryTeams> listAllCountryParamList(@RequestParam(required = false) List<String> name) {
-        if(name == null){return CountryTeams.getListCountryTeams();}
-        return CountryTeams.getListCountryTeams().stream().filter(c -> name.stream().anyMatch(country -> c.getName().equalsIgnoreCase(country))).toList();
+    public ResponseEntity<List<CountryTeamsGetResponse>> listAllCountryParamList(@RequestParam(required = false) List<String> name) {
+
+        var teamGetResponseList = MAPPER.toResonseList(CountryTeams.getListCountryTeams());
+
+        if(name == null){return ResponseEntity.ok(teamGetResponseList);}
+        var response = teamGetResponseList.stream().filter(c -> name.stream().anyMatch(country -> c.getName().equalsIgnoreCase(country))).toList();
+
+        return ResponseEntity.ok(response);
     }
+
     @GetMapping("american/{id}")
-    public CountryTeams findById(@PathVariable Long id){
-        return CountryTeams.getListCountryTeams().stream().filter(c -> c.getId().equals(id)).findFirst().orElse(null);
+    public ResponseEntity<CountryTeamsGetResponse> findById(@PathVariable Long id){
+
+        var countryResponse = CountryTeams.getListCountryTeams().stream().filter(c -> c.getId().equals(id)).findFirst().map(MAPPER::toCountryTeamsGetResponse).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Country Team not found"));;
+        return ResponseEntity.ok().body(countryResponse);
     }
 
     @PostMapping
@@ -50,4 +62,11 @@ public class CountryTeamsController {
         return ResponseEntity.status(HttpStatus.CREATED).body(countryTeamsResponse);
     }
 
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        var countryTeamsDelete = CountryTeams.getListCountryTeams().stream().filter(c -> c.getId().equals(id)).findFirst().orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Country Team not found"));
+
+        CountryTeams.getListCountryTeams().remove(countryTeamsDelete);
+        return ResponseEntity.noContent().build();
+    }
 }

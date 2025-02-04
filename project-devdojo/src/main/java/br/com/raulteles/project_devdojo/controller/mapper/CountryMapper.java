@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;
 
+import java.util.List;
+
 @Mapper
 public interface CountryMapper {
 
@@ -17,6 +19,6 @@ public interface CountryMapper {
     CountryTeams toCountryTeams(CountryTeamsPostRequest postRequest);
 
     CountryTeamsGetResponse toCountryTeamsGetResponse(CountryTeams countryTeams);
-
+    List<CountryTeamsGetResponse> toResonseList(List<CountryTeams> countryTeamsGetResponseList);
 
 }

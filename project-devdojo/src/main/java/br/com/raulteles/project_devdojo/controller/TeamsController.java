@@ -8,10 +8,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
 
 @Slf4j
 @RestController
@@ -44,7 +43,7 @@ public class TeamsController {
     @GetMapping("/pe/{id}")
     public ResponseEntity<TeamsGetResponse> findById(@PathVariable Long id){
 
-        var teamsResponse = Teams.getTeamsPE().stream().filter(t -> t.getId().equals(id)).findFirst().map(MAPPER::toResponse).orElse(null);
+        var teamsResponse = Teams.getTeamsPE().stream().filter(t -> t.getId().equals(id)).findFirst().map(MAPPER::toResponse).orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Team not found"));;
         return ResponseEntity.ok().body(teamsResponse);
     }
 
