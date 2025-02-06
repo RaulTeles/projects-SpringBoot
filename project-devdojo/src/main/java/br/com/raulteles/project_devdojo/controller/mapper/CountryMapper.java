@@ -20,7 +20,7 @@ public interface CountryMapper {
     @Mapping(target = "id", expression = "java(java.util.concurrent.ThreadLocalRandom.current().nextLong(1,1000))")
     CountryTeams toCountryTeams(CountryTeamsPostRequest postRequest);
 //    Passando o Local, para ser mantido ao atualizar o objeto
-    CountryTeams toCountryTeams(CountryTeamsPutRequest putRequest, LocalDateTime dateTime);
+    CountryTeams toCountryTeams(CountryTeamsPutRequest putRequest);
 
     CountryTeamsGetResponse toCountryTeamsGetResponse(CountryTeams countryTeams);
     List<CountryTeamsGetResponse> toResonseList(List<CountryTeams> countryTeamsGetResponseList);
