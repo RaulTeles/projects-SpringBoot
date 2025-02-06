@@ -26,13 +26,4 @@ public class Teams {
         this.name = name;
     }
 
-    @Getter
-    private static List<Teams> teamsPE = new ArrayList<>();
-    static {
-        var stz = Teams.builder().id(1L).name("Santa Cruz").dateTime(LocalDateTime.now()).build();
-        var spt = Teams.builder().id(2L).name("Sport").dateTime(LocalDateTime.now()).build();
-        var nau = Teams.builder().id(3L).name("Nautico").dateTime(LocalDateTime.now()).build();
-        var ret = Teams.builder().id(4L).name("Retro").dateTime(LocalDateTime.now()).build();
-        teamsPE.addAll(List.of(stz,spt,nau,ret));
-    }
 }

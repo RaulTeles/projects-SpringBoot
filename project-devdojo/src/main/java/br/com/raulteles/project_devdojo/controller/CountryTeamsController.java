@@ -6,6 +6,7 @@ import br.com.raulteles.project_devdojo.controller.request.CountryTeamsPostReque
 import br.com.raulteles.project_devdojo.controller.request.CountryTeamsPutRequest;
 import br.com.raulteles.project_devdojo.controller.response.CountryTeamsGetResponse;
 import br.com.raulteles.project_devdojo.controller.services.CountryTeamsService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ public class CountryTeamsController {
     //    Criando um atributo, do tipo contryMapper para tratar o contrato do dominio
     private static final CountryMapper MAPPER = CountryMapper.INSTANCE;
 
+    @Autowired
     private CountryTeamsService service;
 
     public CountryTeamsController(){
