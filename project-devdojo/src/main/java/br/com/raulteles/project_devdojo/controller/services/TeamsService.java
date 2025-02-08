@@ -12,11 +12,11 @@ import java.util.List;
 @Service
 public class TeamsService {
 
-    @Autowired
-    private TeamsRepository repository;
+    private final TeamsRepository repository;
 
-    public TeamsService(){
-        this.repository = new TeamsRepository();
+    @Autowired
+    public TeamsService(TeamsRepository repository){
+        this.repository = repository;
     }
 
     public List<Teams> findAll(String name){

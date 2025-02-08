@@ -1,6 +1,5 @@
 package br.com.raulteles.project_devdojo.controller;
 
-import br.com.raulteles.project_devdojo.controller.domain.CountryTeams;
 import br.com.raulteles.project_devdojo.controller.mapper.CountryMapper;
 import br.com.raulteles.project_devdojo.controller.request.CountryTeamsPostRequest;
 import br.com.raulteles.project_devdojo.controller.request.CountryTeamsPutRequest;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 
@@ -20,15 +18,15 @@ public class CountryTeamsController {
     //    Criando um atributo, do tipo contryMapper para tratar o contrato do dominio
     private static final CountryMapper MAPPER = CountryMapper.INSTANCE;
 
-    @Autowired
-    private CountryTeamsService service;
+    private final CountryTeamsService service;
 
-    public CountryTeamsController(){
-        this.service = new CountryTeamsService();
+    @Autowired
+    public CountryTeamsController(CountryTeamsService service) {
+        this.service = service;
     }
 
     @GetMapping("american")
-    public ResponseEntity<List<CountryTeamsGetResponse>> listAllCountryTeams(@RequestParam(required = false) String name){
+    public ResponseEntity<List<CountryTeamsGetResponse>> listAllCountryTeams(@RequestParam(required = false) String name) {
 
         var response = service.findAll(name);
         var countryTeamsResponseList = MAPPER.toResonseList(response);
@@ -45,7 +43,7 @@ public class CountryTeamsController {
     }
 
     @GetMapping("american/{id}")
-    public ResponseEntity<CountryTeamsGetResponse> findById(@PathVariable Long id){
+    public ResponseEntity<CountryTeamsGetResponse> findById(@PathVariable Long id) {
 
         var countryTeams = service.findById(id);
 
@@ -55,7 +53,7 @@ public class CountryTeamsController {
     }
 
     @PostMapping
-    public ResponseEntity<CountryTeamsGetResponse> save(@RequestBody CountryTeamsPostRequest countryTeamsPostRequest){
+    public ResponseEntity<CountryTeamsGetResponse> save(@RequestBody CountryTeamsPostRequest countryTeamsPostRequest) {
 
         var countryTeams = MAPPER.toCountryTeams(countryTeamsPostRequest);
         var countrySaved = service.save(countryTeams);
@@ -65,13 +63,14 @@ public class CountryTeamsController {
     }
 
     @DeleteMapping("{id}")
-    public ResponseEntity<Void> delete(@PathVariable Long id){
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping
-    public ResponseEntity<Void> update(@RequestBody CountryTeamsPutRequest putRequest){
+    public ResponseEntity<Void> update(@RequestBody CountryTeamsPutRequest putRequest) {
+
         var upadteCountryTeams = MAPPER.toCountryTeams(putRequest);
         service.update(upadteCountryTeams);
 

@@ -12,11 +12,11 @@ import java.util.List;
 @Service
 public class CountryTeamsService {
 
-    @Autowired
     private final CountryTeamsRepository repository;
 
-    public CountryTeamsService(){
-        this.repository = new CountryTeamsRepository();
+    @Autowired
+    public CountryTeamsService(CountryTeamsRepository repository){
+        this.repository = repository;
     }
 
     public List<CountryTeams> findAll(String name){

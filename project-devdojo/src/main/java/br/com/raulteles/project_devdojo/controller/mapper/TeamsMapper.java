@@ -20,7 +20,7 @@ public interface TeamsMapper {
     Teams toTeams(TeamsPostRequest postRequest);
     Teams toTeams(TeamsPutRequest putRequest);
 
-    TeamsGetResponse toResponse(Teams teamsGetReponse);
+    TeamsGetResponse toResponse(Teams teamsPosReponse);
     List<TeamsGetResponse> toResponseList(List<Teams> teamsGetResponseList);
 
 

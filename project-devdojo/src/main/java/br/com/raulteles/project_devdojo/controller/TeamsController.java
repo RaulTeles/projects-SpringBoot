@@ -19,8 +19,12 @@ import java.util.List;
 public class TeamsController {
     private static final TeamsMapper MAPPER = TeamsMapper.INTANCE;
 
+    private final TeamsService service;
+
     @Autowired
-    private TeamsService service;
+    public TeamsController(TeamsService service) {
+        this.service = service;
+    }
 
     @GetMapping("/pe")
     public ResponseEntity<List<TeamsGetResponse>> listTeams(@RequestParam(required = false) String name){
