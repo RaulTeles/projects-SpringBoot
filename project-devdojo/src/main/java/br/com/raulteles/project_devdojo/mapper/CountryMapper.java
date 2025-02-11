@@ -1,9 +1,9 @@
-package br.com.raulteles.project_devdojo.controller.mapper;
+package br.com.raulteles.project_devdojo.mapper;
 
-import br.com.raulteles.project_devdojo.controller.domain.CountryTeams;
-import br.com.raulteles.project_devdojo.controller.request.CountryTeamsPostRequest;
-import br.com.raulteles.project_devdojo.controller.request.CountryTeamsPutRequest;
-import br.com.raulteles.project_devdojo.controller.response.CountryTeamsGetResponse;
+import br.com.raulteles.project_devdojo.domain.CountryTeams;
+import br.com.raulteles.project_devdojo.request.CountryTeamsPostRequest;
+import br.com.raulteles.project_devdojo.request.CountryTeamsPutRequest;
+import br.com.raulteles.project_devdojo.response.CountryTeamsGetResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.factory.Mappers;

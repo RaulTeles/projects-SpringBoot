@@ -1,4 +1,4 @@
-package br.com.raulteles.project_devdojo.controller.domain;
+package br.com.raulteles.project_devdojo.domain;
 
 import lombok.*;
 

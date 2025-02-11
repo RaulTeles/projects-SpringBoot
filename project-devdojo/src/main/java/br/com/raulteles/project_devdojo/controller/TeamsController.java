@@ -1,10 +1,10 @@
 package br.com.raulteles.project_devdojo.controller;
 
-import br.com.raulteles.project_devdojo.controller.mapper.TeamsMapper;
-import br.com.raulteles.project_devdojo.controller.request.TeamsPostRequest;
-import br.com.raulteles.project_devdojo.controller.request.TeamsPutRequest;
-import br.com.raulteles.project_devdojo.controller.response.TeamsGetResponse;
-import br.com.raulteles.project_devdojo.controller.services.TeamsService;
+import br.com.raulteles.project_devdojo.mapper.TeamsMapper;
+import br.com.raulteles.project_devdojo.request.TeamsPostRequest;
+import br.com.raulteles.project_devdojo.request.TeamsPutRequest;
+import br.com.raulteles.project_devdojo.response.TeamsGetResponse;
+import br.com.raulteles.project_devdojo.services.TeamsService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

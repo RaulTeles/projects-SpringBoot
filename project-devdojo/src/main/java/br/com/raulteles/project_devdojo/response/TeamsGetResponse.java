@@ -1,4 +1,4 @@
-package br.com.raulteles.project_devdojo.controller.response;
+package br.com.raulteles.project_devdojo.response;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @Builder
-public class CountryTeamsGetResponse {
+public class TeamsGetResponse  {
     private Long id;
     private String name;
 }

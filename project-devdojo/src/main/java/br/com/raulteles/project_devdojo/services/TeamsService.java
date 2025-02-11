@@ -1,7 +1,7 @@
-package br.com.raulteles.project_devdojo.controller.services;
+package br.com.raulteles.project_devdojo.services;
 
-import br.com.raulteles.project_devdojo.controller.domain.Teams;
-import br.com.raulteles.project_devdojo.controller.repository.TeamsRepository;
+import br.com.raulteles.project_devdojo.domain.Teams;
+import br.com.raulteles.project_devdojo.repository.TeamsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;

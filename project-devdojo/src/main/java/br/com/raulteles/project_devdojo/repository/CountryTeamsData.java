@@ -1,6 +1,6 @@
-package br.com.raulteles.project_devdojo.controller.repository;
+package br.com.raulteles.project_devdojo.repository;
 
-import br.com.raulteles.project_devdojo.controller.domain.CountryTeams;
+import br.com.raulteles.project_devdojo.domain.CountryTeams;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;

@@ -1,9 +1,10 @@
 package br.com.raulteles.project_devdojo.controller.repository;
 
-import br.com.raulteles.project_devdojo.controller.domain.CountryTeams;
+import br.com.raulteles.project_devdojo.domain.CountryTeams;
+import br.com.raulteles.project_devdojo.repository.CountryTeamsData;
+import br.com.raulteles.project_devdojo.repository.CountryTeamsRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,8 +16,6 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @ExtendWith(MockitoExtension.class)
 class CountryTeamsRepositoryTest {
@@ -59,6 +58,22 @@ class CountryTeamsRepositoryTest {
 //        Anteção, esta retornando um Optional
         Assertions.assertThat(countryTeams).isPresent().contains(expectedCountryId);
     }
+
+    @Test
+    @DisplayName("FindName return list empty when the name is null")
+    void findNameReturtListEmpty_WhenSucess(){
+        var countryTeams = repository.findName(null);
+        Assertions.assertThat(countryTeams).isNotNull().isEmpty();
+    }
+
+    @Test
+    @DisplayName("FindName return name found")
+    void findNameReturnNameFound_WhenSucess(){
+        var expectedCountryId = countryTeams.getFirst();
+        var countryTeams = repository.findName(expectedCountryId.getName());
+        Assertions.assertThat(countryTeams).contains(expectedCountryId);
+    }
+
 
 
 }

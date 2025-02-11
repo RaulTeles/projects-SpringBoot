@@ -1,10 +1,10 @@
 package br.com.raulteles.project_devdojo.controller;
 
-import br.com.raulteles.project_devdojo.controller.mapper.CountryMapper;
-import br.com.raulteles.project_devdojo.controller.request.CountryTeamsPostRequest;
-import br.com.raulteles.project_devdojo.controller.request.CountryTeamsPutRequest;
-import br.com.raulteles.project_devdojo.controller.response.CountryTeamsGetResponse;
-import br.com.raulteles.project_devdojo.controller.services.CountryTeamsService;
+import br.com.raulteles.project_devdojo.mapper.CountryMapper;
+import br.com.raulteles.project_devdojo.request.CountryTeamsPostRequest;
+import br.com.raulteles.project_devdojo.request.CountryTeamsPutRequest;
+import br.com.raulteles.project_devdojo.response.CountryTeamsGetResponse;
+import br.com.raulteles.project_devdojo.services.CountryTeamsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package br.com.raulteles.project_devdojo.controller.request;
+package br.com.raulteles.project_devdojo.request;
 
 import lombok.Builder;
 import lombok.Getter;
