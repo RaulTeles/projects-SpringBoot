@@ -1,5 +1,0 @@
-database:
-  host: localhost:7777
-  username: mysql
-  password: mysql
-
