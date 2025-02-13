@@ -1,14 +1,15 @@
-package br.com.raulteles.user_service.domain;
+package br.com.raulteles.user_service.responses;
 
-import lombok.*;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
-@AllArgsConstructor
 @Getter
 @Setter
-@Builder
 @ToString
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-public class User {
+public class UserGetResponse {
     @EqualsAndHashCode.Include
     private Long id;
     private String firstName;

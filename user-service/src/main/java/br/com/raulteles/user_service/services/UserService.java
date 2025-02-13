@@ -1,7 +1,7 @@
 package br.com.raulteles.user_service.services;
 
-import br.com.raulteles.project_devdojo.domain.User;
-import br.com.raulteles.project_devdojo.repository.UserRepository;
+import br.com.raulteles.user_service.domain.User;
+import br.com.raulteles.user_service.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -18,8 +18,8 @@ public class UserService {
         this.repository = repository;
     }
 
-    public List<User> findAll(String name) {
-        return name == null ? repository.findAll() : repository.findByName(name);
+    public List<User> findAll(String firstName) {
+        return firstName == null ? repository.findAll() : repository.findByName(firstName);
     }
 
     public User findById(Long id) {
